@@ -1,0 +1,18 @@
+﻿{
+  "status": "success",
+  "result": {
+    "fileName": "firebase-js-config.json",
+    "fileContents": "{\n  \"projectId\": \"cooome2me\",\n  \"appId\": \"1:232487200975:web:a05d89a98c71ae5f35afba\",\n  \"storageBucket\": \"cooome2me.firebasestorage.app\",\n  \"apiKey\": \"AIzaSyDNOOnf5YQBreMvVT1mAHzmcY_v3KkZEyo\",\n  \"authDomain\": \"cooome2me.firebaseapp.com\",\n  \"messagingSenderId\": \"232487200975\",\n  \"measurementId\": \"G-63QDBZ28ZL\",\n  \"projectNumber\": \"232487200975\",\n  \"version\": \"2\"\n}",
+    "sdkConfig": {
+      "projectId": "cooome2me",
+      "appId": "1:232487200975:web:a05d89a98c71ae5f35afba",
+      "storageBucket": "cooome2me.firebasestorage.app",
+      "apiKey": "AIzaSyDNOOnf5YQBreMvVT1mAHzmcY_v3KkZEyo",
+      "authDomain": "cooome2me.firebaseapp.com",
+      "messagingSenderId": "232487200975",
+      "measurementId": "G-63QDBZ28ZL",
+      "projectNumber": "232487200975",
+      "version": "2"
+    }
+  }
+}

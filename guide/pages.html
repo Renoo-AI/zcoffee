@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZCOFFEE | Structure des Pages</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><clipPath id='s'><rect width='100' height='100' rx='30'/></clipPath></defs><g clip-path='url(%23s)'><rect width='50' height='100' fill='%232d2a26'/><rect x='50' width='50' height='100' fill='%23b48c68'/><text y='72' x='50' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='65' fill='%23faf9f6'>Z</text></g></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --accent: #b48c68;
+            --dark: #2d2a26;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .page-node {
+            border-left: 2px solid #b48c68;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .page-node::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #b48c68;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="p-6">
+    <div class="max-w-lg mx-auto pt-12">
+        <header class="mb-16">
+            <h1 class="serif text-4xl mb-2">Architecture</h1>
+            <p class="text-[10px] uppercase tracking-widest opacity-40">Organisation des fichiers et URLs</p>
+        </header>
+
+        <div class="ml-4">
+            <div class="page-node">
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Racine /</span>
+                <h3 class="font-bold text-lg mb-2">index.html (404)</h3>
+                <p class="text-xs opacity-60">Gère les erreurs et redirige vers ZCOFFEE.</p>
+            </div>
+
+            <div class="page-node">
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Client /zcoffee/</span>
+                <h3 class="font-bold text-lg mb-2">index.html & menu/index.html</h3>
+                <p class="text-xs opacity-60">Landing page et Menu digital interactif.</p>
+            </div>
+
+            <div class="page-node">
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Admin /admin/</span>
+                <h3 class="font-bold text-lg mb-2">login.html & dashboard.html</h3>
+                <p class="text-xs opacity-60">Authentification Google et gestion du menu.</p>
+            </div>
+
+            <div class="page-node border-[#2d2a26]/20">
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Guide /guide/</span>
+                <h3 class="font-bold text-lg mb-2 text-[#b48c68]">index.html, links.html, pages.html</h3>
+                <p class="text-xs opacity-60">Cette documentation technique.</p>
+            </div>
+        </div>
+
+        <footer class="mt-20 text-center pb-12">
+            <a href="index.html"
+                class="text-[10px] font-bold uppercase tracking-widest opacity-30 hover:opacity-100 transition-opacity">←
+                Retour au Guide</a>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+.firebase/
+firebase-config.json
+full_config.json
+latest_config.json
+projects.json
+projects.txt
+zcoffee-secret-2026.html
+.DS_Store
+node_modules/

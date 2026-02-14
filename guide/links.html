@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZCOFFEE | Portail Public</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><clipPath id='s'><rect width='100' height='100' rx='30'/></clipPath></defs><g clip-path='url(%23s)'><rect width='50' height='100' fill='%232d2a26'/><rect x='50' width='50' height='100' fill='%23b48c68'/><text y='72' x='50' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='65' fill='%23faf9f6'>Z</text></g></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --accent: #b48c68;
+            --dark: #2d2a26;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100dvh;
+            padding: 2rem;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .portal-card {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .btn-link {
+            display: block;
+            width: 100%;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(180, 140, 104, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(180, 140, 104, 0.12);
+            border-color: var(--accent);
+        }
+
+        .btn-link:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-link .label {
+            display: block;
+            font-[10px] uppercase tracking-[0.3em] opacity-40 font-bold mb-1;
+        }
+
+        .btn-link .title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-text {
+            margin-top: 3rem;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            opacity: 0.2;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="portal-card">
+        <div class="logo-container">
+            <svg width="60" height="60" viewBox="0 0 100 100" class="mx-auto mb-6 shadow-xl rounded-[30px]">
+                <defs>
+                    <clipPath id="l">
+                        <rect width="100" height="100" rx="30" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#l)">
+                    <rect width="50" height="100" fill="#2d2a26" />
+                    <rect x="50" width="50" height="100" fill="#b48c68" />
+                    <text y="72" x="50" text-anchor="middle" font-family="serif" font-weight="900" font-size="65"
+                        fill="#faf9f6">Z</text>
+                </g>
+            </svg>
+            <h1 class="serif text-4xl mb-2 tracking-tight">ZCOFFEE</h1>
+            <p class="text-[10px] uppercase tracking-[0.4em] opacity-40 font-bold">Portail Digital</p>
+        </div>
+
+        <div class="links-container">
+            <a href="/zcoffee" class="btn-link">
+                <span class="label">Expérience</span>
+                <span class="title">Accueil Principal</span>
+            </a>
+
+            <a href="/zcoffee/menu" class="btn-link">
+                <span class="label">La Carte</span>
+                <span class="title" style="color: #b48c68;">Menu Digital</span>
+            </a>
+
+            <a href="/guide/" class="btn-link" style="background: rgba(255,255,255,0.5);">
+                <span class="label">Support</span>
+                <span class="title opacity-60">Guide Premium</span>
+            </a>
+        </div>
+
+        <p class="footer-text">Oued Ellil • Tunis</p>
+    </div>
+</body>
+
+</html>

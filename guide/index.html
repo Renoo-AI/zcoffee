@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZCOFFEE | Guide Premium</title>
+
+    <!-- Nouveau Favicon Bicolore avec Z -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><clipPath id='s'><rect width='100' height='100' rx='30'/></clipPath></defs><g clip-path='url(%23s)'><rect width='50' height='100' fill='%232d2a26'/><rect x='50' width='50' height='100' fill='%23b48c68'/><text y='72' x='50' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='65' fill='%23faf9f6'>Z</text></g></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --accent: #b48c68;
+            --dark: #2d2a26;
+            --border: rgba(180, 140, 104, 0.15);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Animation System */
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--accent);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 50px -12px rgba(45, 42, 38, 0.08);
+        }
+
+        .copy-success::after {
+            content: "Copié !";
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            animation: fadeOutUp 1s forwards;
+        }
+
+        @keyframes fadeOutUp {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 0);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -5px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -15px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#faf9f6]">
+
+    <!-- Fixed Header -->
+    <header class="glass-nav fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <svg width="34" height="34" viewBox="0 0 100 100" class="shadow-sm">
+                <defs>
+                    <clipPath id="logo-clip">
+                        <rect width="100" height="100" rx="30" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#logo-clip)">
+                    <rect width="50" height="100" fill="#2d2a26" />
+                    <rect x="50" width="50" height="100" fill="#b48c68" />
+                    <text y="72" x="50" text-anchor="middle" font-family="serif" font-weight="900" font-size="65"
+                        fill="#faf9f6">Z</text>
+                </g>
+            </svg>
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80">ZCOFFEE Guide</span>
+        </div>
+        <div class="flex gap-1.5" id="dots-container"></div>
+    </header>
+
+    <!-- Content Area -->
+    <main class="pt-24 pb-32 px-5 max-w-lg mx-auto">
+        <div id="step-content" class="min-h-[60vh]"></div>
+    </main>
+
+    <!-- Bottom Action Bar -->
+    <footer class="fixed bottom-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 p-6 z-50">
+        <div class="max-w-lg mx-auto flex items-center justify-between gap-4">
+            <button onclick="prevStep()" id="prev-btn"
+                class="px-6 py-4 text-xs font-bold uppercase tracking-widest opacity-30 disabled:hidden">Retour</button>
+            <button onclick="nextStep()" id="next-btn"
+                class="flex-1 bg-[#2d2a26] text-white py-4 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-black/10 active:scale-95 transition-all">Continuer</button>
+        </div>
+    </footer>
+
+    <script>
+        const steps = [
+            {
+                title: "L'Adresse Privée",
+                subtitle: "Accès Sécurisé",
+                content: "Le panneau d'administration est invisible pour le public. Gardez ce lien secret pour gérer votre établissement.",
+                icon: "🌐",
+                detail: "https://zcoffee-tn.web.app/zcoffee-secret-2026.html",
+                isCopyable: true,
+                copyLabel: "Copier le lien"
+            },
+            {
+                title: "La Clé Maîtresse",
+                subtitle: "Authentification",
+                content: "Une signature numérique est requise avant toute action. Saisissez ce code dès votre arrivée sur la page.",
+                icon: "🔐",
+                detail: "16122010",
+                isCopyable: true,
+                copyLabel: "Copier le code"
+            },
+            {
+                title: "Emails Autorisés",
+                subtitle: "Identification",
+                content: "Seuls ces emails Google peuvent accéder au Dashboard Admin après authentification :",
+                icon: "👤",
+                detail: "awatifnefzi@gmail.com\nbelhajyoussefbelhaj@gmail.com",
+                isCopyable: true,
+                copyLabel: "Copier les emails"
+            },
+            {
+                title: "Liens Clients",
+                subtitle: "Partage Public",
+                content: "Voici les adresses à partager avec vos clients pour l'accueil et le menu digital.",
+                icon: "🔗",
+                isLinks: true,
+                links: [
+                    { label: "ACCUEIL ZCOFFEE", url: "https://zcoffee-tn.web.app/zcoffee" },
+                    { label: "MENU DIGITAL", url: "https://zcoffee-tn.web.app/zcoffee/menu" }
+                ]
+            },
+            {
+                title: "Prêt à Gérer ?",
+                subtitle: "Dashboard Live",
+                content: "Tout est configuré. Vous pouvez maintenant modifier vos prix et produits en temps réel.",
+                icon: "☕",
+                detail: "zcoffee-tn.web.app/admin/dashboard.html",
+                isCopyable: false
+            }
+        ];
+
+        let currentStep = 0;
+
+        function renderStep() {
+            const step = steps[currentStep];
+            const content = document.getElementById('step-content');
+
+            content.innerHTML = `
+                <div class="fade-in-up">
+                    <div class="text-[5rem] mb-6 text-center">${step.icon}</div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#b48c68] text-center mb-2">${step.subtitle}</p>
+                    <h2 class="serif text-4xl text-center mb-6">${step.title}</h2>
+                    
+                    <div class="bg-white p-8 rounded-[2.5rem] card-shadow border border-[#b48c68]/10 mb-8">
+                        <p class="text-sm text-gray-500 leading-relaxed text-center mb-8">${step.content}</p>
+                        
+                        <div class="bg-[#faf9f6] p-5 rounded-2xl border border-gray-100 text-center flex flex-col items-center gap-2 overflow-hidden">
+                            ${step.isLinks ? `
+                                <div class="flex flex-col gap-4 w-full">
+                                    ${step.links.map(link => `
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-[9px] uppercase tracking-widest opacity-40 font-bold">${link.label}</span>
+                                            <a href="${link.url}" target="_blank" class="text-[#b48c68] text-xs font-bold underline break-all">${link.url}</a>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : `
+                                <span class="text-[14px] font-bold ${step.isCopyable ? 'text-[#b48c68]' : 'text-gray-400'} break-all whitespace-pre-line" id="detail-text">${step.detail}</span>
+                                ${step.isCopyable ? `
+                                    <button onclick="copyToClipboard('${step.detail}', this)" class="text-[9px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity mt-2">${step.copyLabel}</button>
+                                ` : ''}
+                            `}
+                        </div>
+                    </div>
+
+                    ${currentStep === steps.length - 1 ? `
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <a href="links.html" class="bg-white p-4 rounded-2xl border border-gray-100 text-center card-shadow">
+                                <span class="block text-lg mb-1">🔗</span>
+                                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Tous les Liens</span>
+                            </a>
+                            <a href="pages.html" class="bg-white p-4 rounded-2xl border border-gray-100 text-center card-shadow">
+                                <span class="block text-lg mb-1">🏗️</span>
+                                <span class="text-[9px] font-bold uppercase tracking-widest opacity-40">Architecture</span>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <p class="serif italic text-lg opacity-50">Bonne gestion, Youssef.</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Update dots
+            const dotsHtml = steps.map((_, i) => `
+                <div class="step-indicator ${i === currentStep ? 'active' : ''}"></div>
+            `).join('');
+            document.getElementById('dots-container').innerHTML = dotsHtml;
+
+            // Update buttons
+            document.getElementById('prev-btn').disabled = currentStep === 0;
+            document.getElementById('next-btn').innerText = currentStep === steps.length - 1 ? "Terminer" : "Continuer";
+        }
+
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                renderStep();
+            } else {
+                window.location.href = "/zcoffee/menu";
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                renderStep();
+            }
+        }
+
+        function copyToClipboard(text, btn) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            btn.classList.add('copy-success');
+            setTimeout(() => btn.classList.remove('copy-success'), 1500);
+        }
+
+        renderStep();
+    </script>
+</body>
+
+</html>
