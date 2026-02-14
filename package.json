@@ -1,0 +1,34 @@
+{
+    "name": "zcoffee-security",
+    "version": "1.0.0",
+    "description": "Système de sécurité pour l'administration web ZCOFFEE",
+    "main": "security-test.js",
+    "scripts": {
+        "security-test": "node security-test.js",
+        "deploy": "firebase deploy",
+        "deploy:hosting": "firebase deploy --only hosting",
+        "deploy:functions": "firebase deploy --only functions",
+        "deploy:rules": "firebase deploy --only firestore:rules",
+        "deploy:all": "firebase deploy",
+        "serve": "firebase serve",
+        "emulators": "firebase emulators:start",
+        "logs": "firebase functions:log",
+        "security:headers": "node security-test.js",
+        "security:full": "npm run security-test && firebase firestore:rules:validate"
+    },
+    "keywords": [
+        "firebase",
+        "security",
+        "owasp",
+        "authentication",
+        "authorization"
+    ],
+    "author": "ZCOFFEE Team",
+    "license": "UNLICENSED",
+    "private": true,
+    "devDependencies": {},
+    "dependencies": {},
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

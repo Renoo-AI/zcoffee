@@ -1,9 +1,156 @@
-.firebase/
+# ========================================
+# GITIGNORE SÉCURISÉ POUR ZCOFFEE
+# ========================================
+
+# ===== SECRETS ET CLÉS (CRITIQUE!) =====
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.key
+*.pem
+*.p12
+*.jks
+secrets/
+secret-*.json
+
+# Fichiers de config Firebase sensibles
 firebase-config.json
 full_config.json
-latest_config.json
-projects.json
-projects.txt
-zcoffee-secret-2026.html
-.DS_Store
+latest_config*.json
+service-account-*.json
+
+# ===== FIREBASE =====
+.firebase/
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+
+# ===== NODE_MODULES =====
 node_modules/
+functions/node_modules/
+**/node_modules/
+
+# ===== LOGS =====
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# ===== SYSTÈMES D'EXPLOITATION =====
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===== IDE/EDITORS =====
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ===== BUILD ET CACHE =====
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.temp/
+*.pid
+*.seed
+*.pid.lock
+
+# ===== TESTS =====
+coverage/
+.nyc_output/
+test-results/
+*.lcov
+
+# ===== BACKUP ET TEMPORAIRES =====
+*.bak
+*.backup
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ===== DONNÉES SENSIBLES =====
+# Ne JAMAIS commiter ces fichiers
+*.sql
+*.sqlite
+*.db
+dump.rdb
+data/
+backups/
+
+# ===== FICHIERS GÉNÉRÉS =====
+package-lock.json # (optionnel - dépend de votre workflow)
+yarn.lock # (optionnel)
+.eslintcache
+.stylelintcache
+
+# ===== DOCUMENTATION GÉNÉRÉE =====
+docs/generated/
+api-docs/
+
+# ===== FICHIERS SYSTÈME =====
+*.pid
+*.seed
+*.pid.lock
+
+# ===== ARCHIVES =====
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===== CERTIFICATS ET CLÉS SSL =====
+*.crt
+*.csr
+*.der
+*.cer
+
+# ===== FIREBASE EMULATOR DATA =====
+.firebase/emulator-data/
+
+# ===== AUTRES =====
+.vscode-test
+npm-debug.log
+.npm
+.eslintcache

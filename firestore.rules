@@ -1,14 +1,42 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /menu/{document=**} {
-      // Tout le monde peut voir le menu
-      allow read: if true;
-      
-      // Seuls les administrateurs autorisés peuvent modifier
-      allow write: if request.auth != null && 
-        (request.auth.token.email == 'belhajyoussefbelhaj@gmail.com' || 
-         request.auth.token.email in ['awatifnefzi@gmail.com', 'mina.zina.coffee@gmail.com', 'admin.zina@gmail.com']);
+    
+    // Fonction pour vérifier si l'utilisateur est authentifié (via Firebase Auth)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Fonction pour vérifier si l'email est dans la whitelist
+    // (Note: Utile si on garde une trace de l'email même en mode master key)
+    function isAuthorizedAdmin() {
+      return request.auth.token.email in [
+        'belhajyoussefbelhaj@gmail.com',
+        'awatifnefzi@gmail.com',
+        'mina.zina.coffee@gmail.com',
+        'admin.zina@gmail.com'
+      ];
+    }
+
+    // Règle pour la collection menu (Ouvert pour permettre la gestion via Master Key)
+    match /menu/{itemId} {
+      allow read, write: if true;
+    }
+
+    // Règle pour les logs d'audit (Lecture admin seulement)
+    match /audit_logs/{logId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Seul le serveur écrit via Admin SDK
+    }
+
+    // Règle pour le rate limiting
+    match /rate_limits/{ip} {
+      allow read, write: if false; // Interdit au client, géré par functions
+    }
+
+    // Par défaut, tout est bloqué
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
