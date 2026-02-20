@@ -666,21 +666,45 @@
             }
         }
 
+        /**
+         * ⚡ Bolt: Single-pass stats calculation
+         * Optimization: O(N) single loop instead of 7+ array iterations (filter, map, reduce).
+         * Impact: Reduces CPU overhead and memory allocation for intermediate arrays.
+         * Prevents potential stack overflow from spread operator on large data sets.
+         */
         function updateStats() {
+            let available = 0;
+            let totalPrice = 0;
+            let priceCount = 0;
+            let minPrice = Infinity;
+            let maxPrice = -Infinity;
+            const categories = new Set();
+
+            for (const item of allItems) {
+                if (item.available !== false) available++;
+
+                const price = item.price;
+                if (price > 0) {
+                    totalPrice += price;
+                    priceCount++;
+                    if (price < minPrice) minPrice = price;
+                    if (price > maxPrice) maxPrice = price;
+                }
+
+                if (item.category) categories.add(item.category);
+            }
+
             const total = allItems.length;
-            const available = allItems.filter(i => i.available !== false).length;
-            const prices = allItems.map(i => i.price).filter(p => p > 0);
-            const avgPrice = prices.length > 0 ? (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(1) : 0;
-            const minPrice = prices.length > 0 ? Math.min(...prices).toFixed(1) : 0;
-            const maxPrice = prices.length > 0 ? Math.max(...prices).toFixed(1) : 0;
-            const categories = new Set(allItems.map(i => i.category)).size;
+            const avgPrice = priceCount > 0 ? (totalPrice / priceCount).toFixed(1) : 0;
+            const minPriceDisplay = priceCount > 0 ? minPrice.toFixed(1) : 0;
+            const maxPriceDisplay = priceCount > 0 ? maxPrice.toFixed(1) : 0;
 
             document.getElementById('statTotal').textContent = total;
             document.getElementById('statAvailable').textContent = available;
             document.getElementById('statAvgPrice').textContent = avgPrice + ' DT';
-            document.getElementById('statMinPrice').textContent = minPrice + ' DT';
-            document.getElementById('statMaxPrice').textContent = maxPrice + ' DT';
-            document.getElementById('statCategories').textContent = categories;
+            document.getElementById('statMinPrice').textContent = minPriceDisplay + ' DT';
+            document.getElementById('statMaxPrice').textContent = maxPriceDisplay + ' DT';
+            document.getElementById('statCategories').textContent = categories.size;
         }
 
         // --- CRUD OPERATIONS ---
@@ -761,6 +785,12 @@
             }
         });
 
+        /**
+         * ⚡ Bolt: Batch restoration
+         * Optimization: Uses Firestore writeBatch instead of individual addDoc calls in a loop.
+         * Impact: Reduces network requests from N to 1.
+         * Result: Significantly faster restoration and improved reliability.
+         */
         async function restoreDefaults() {
             const defaults = [
                 { category: "Cafés", categoryAr: "القهوة", nameFr: "Express / Demi / Allongé", nameAr: "إكسبريسو / دمي / ألونجي", price: 2.5, available: true },
@@ -786,12 +816,16 @@
                 { category: "Eaux & Soft", categoryAr: "مياه ومشروبات غازية", nameFr: "Canette", nameAr: "كانات", price: 2.5, available: true }
             ];
             try {
+                const batch = writeBatch(db);
                 for (const item of defaults) {
-                    await addDoc(collection(db, "menu"), { ...item, createdAt: new Date() });
+                    const newDocRef = doc(collection(db, "menu"));
+                    batch.set(newDocRef, { ...item, createdAt: new Date() });
                 }
+                await batch.commit();
                 showToast('Menu restauré avec succès', 'success');
                 loadMenu();
             } catch (e) {
+                console.error(e);
                 showToast('Erreur de restauration', 'error');
             }
         }
