@@ -561,10 +561,12 @@
             list.classList.remove('hidden');
             noResults.classList.add('hidden');
 
+            const fragment = document.createDocumentFragment();
             filtered.forEach(item => {
                 const card = createItemCard(item);
-                list.appendChild(card);
+                fragment.appendChild(card);
             });
+            list.appendChild(fragment);
         }
 
         function createItemCard(data) {
