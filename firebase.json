@@ -5,7 +5,19 @@
         "ignore": [
             "firebase.json",
             "**/.*",
-            "**/node_modules/**"
+            "**/node_modules/**",
+            "functions/**",
+            "package*.json",
+            "firestore.rules",
+            "firestore.indexes.json",
+            ".firebaserc",
+            "security-test.js",
+            "*.md",
+            "zadmin.apk",
+            "projects.*",
+            "latest_config*.json",
+            "full_config*.json",
+            "firebase_serve.log"
         ],
         "redirects": [
             {

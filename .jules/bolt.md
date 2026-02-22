@@ -1,0 +1,3 @@
+## 2026-02-20 - [Batch Firestore Writes and Single-Pass Stats]
+**Learning:** Collapsing multiple array iterations (filter, map, reduce) into a single loop significantly reduces CPU and memory overhead, especially for larger data sets. In Firestore applications, using `writeBatch` is critical to avoid sequential network round-trips when performing multiple writes, which is a common performance bottleneck in admin dashboards.
+**Action:** Always check for loops containing `await` database calls and replace them with batches or transactions. Consolidate multiple array traversals into a single pass when possible.
