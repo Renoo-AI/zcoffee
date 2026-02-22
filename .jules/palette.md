@@ -1,0 +1,3 @@
+## 2026-02-22 - [Accessibility in Admin Dashboard]
+**Learning:** Admin dashboards often neglect accessibility in favor of functionality. Adding `for` attributes to labels and `aria-label` to icon-only buttons significantly improves the experience for keyboard and screen reader users without changing the visual design. Linking labels to inputs also improves UX for all users by increasing the clickable area to focus inputs.
+**Action:** Always check that `<label>` elements are correctly linked to their inputs using the `for` attribute. Ensure icon-only buttons have descriptive `aria-label` attributes.
