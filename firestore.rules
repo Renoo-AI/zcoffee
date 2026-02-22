@@ -18,7 +18,7 @@ service cloud.firestore {
       ];
     }
 
-    // Règle pour la collection menu (Ouvert pour permettre la gestion via Master Key)
+    // Règle pour la collection menu (Accès public pour mode 'naked admin')
     match /menu/{itemId} {
       allow read, write: if true;
     }

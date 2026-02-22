@@ -150,7 +150,7 @@
         </div>
     </div>
 
-    <div id="body-content" class="hidden">
+    <div id="body-content">
         <!-- Navigation -->
         <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -464,29 +464,12 @@
             }
         });
 
-        // --- AUTHENTICATION ---
-        const isAuthenticated = sessionStorage.getItem('admin_authenticated') === 'true';
-        const authTimestamp = sessionStorage.getItem('auth_timestamp');
-        const SESSION_TIMEOUT = 30 * 60 * 1000;
-
-        if (!isAuthenticated || !authTimestamp) {
-            window.location.href = "../zcoffee-secret-2026.html";
-        } else {
-            const elapsed = Date.now() - parseInt(authTimestamp);
-            if (elapsed > SESSION_TIMEOUT) {
-                sessionStorage.clear();
-                window.location.href = "../zcoffee-secret-2026.html";
-            } else {
-                document.getElementById("body-content").classList.remove("hidden");
-                document.getElementById("userEmail").innerText = "Administrateur";
-                loadMenu();
-                sessionStorage.setItem('auth_timestamp', Date.now().toString());
-            }
-        }
+        // --- ADMIN ACCESS (Security disabled for dev) ---
+        document.getElementById("userEmail").innerText = "Administrateur (Naked Mode)";
+        loadMenu();
 
         window.logout = () => {
-            sessionStorage.clear();
-            window.location.href = "../zcoffee-secret-2026.html";
+            alert("Security is disabled. No session to clear.");
         };
 
         // --- MODAL ---
