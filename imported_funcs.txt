@@ -1,0 +1,11 @@
+addDoc
+collection
+deleteDoc
+doc
+enableIndexedDbPersistence
+getDocs
+getFirestore
+orderBy
+query
+updateDoc
+writeBatch
